@@ -33,6 +33,8 @@ public class Student implements Parcelable {
     /** this students major */
     private String _major;
 
+    /** this students class standing */
+    private ClassStanding _standing;
 
     /* **********************
      * Getters and setters
@@ -45,6 +47,9 @@ public class Student implements Parcelable {
 
     public String getMajor() {return _major; }
     public void setMajor(String major) { _major = major; }
+
+    public ClassStanding getStanding() {return _standing; }
+    public void setStanding(ClassStanding standing) {_standing = standing; }
 
     /**
      * Lookup a major based on its code.  Returns the postion of that
@@ -63,6 +68,12 @@ public class Student implements Parcelable {
         return 0;
     }
 
+    public Student(String name, String major, ClassStanding standing) {
+        _name = name;
+        _major= major;
+        _standing = standing;
+        _id = Student.Next_Id++;
+    }
 
     /**
      * Make a new student
@@ -70,9 +81,7 @@ public class Student implements Parcelable {
      * @param major     the student's major
      */
     public Student(String name, String major) {
-        _name = name;
-        _major= major;
-        _id = Student.Next_Id++;
+        this(name, major, ClassStanding.FRESHMAN);
     }
 
     /**
@@ -80,7 +89,7 @@ public class Student implements Parcelable {
      * This constructor only for GUI use in edit/new student dialog
      */
     public Student() {
-        this("enter new name" , "NA");
+        this("enter new name" , "NA", ClassStanding.FRESHMAN);
     }
 
     /**
@@ -89,7 +98,7 @@ public class Student implements Parcelable {
      */
     @Override
     public String toString() {
-        return _name + " " + _major;
+        return _name + " " + _major + " " + _standing.toString();
     }
 
 
