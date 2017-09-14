@@ -122,7 +122,7 @@ public class Student implements Parcelable {
         _name = in.readString();
         _major = in.readString();
         _id = in.readInt();
-
+        _standing = (ClassStanding) in.readSerializable();
 
     }
 
@@ -141,7 +141,7 @@ public class Student implements Parcelable {
          dest.writeString(_name);
          dest.writeString(_major);
          dest.writeInt(_id);
-
+         dest.writeSerializable(_standing);
 
     }
 
